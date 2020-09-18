@@ -5,6 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart'  as fire_store;
 import 'package:firebase_core/firebase_core.dart' as fire_core;
 import 'package:http/http.dart' as http;
 
+import 'package:pemilihan_app/locator.dart';
+import 'package:pemilihan_app/model/model.dart';
 
 part 'service_core.dart';
 part 'service_auth.dart';
