@@ -5,3 +5,4 @@ part 'xbutton.dart';
 part 'xtextfield.dart';
 part 'xtopbar.dart';
 part 'xtopprogressindicator.dart';
+part 'xbox.dart';
