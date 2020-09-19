@@ -11,24 +11,34 @@ class TypeSelectionPage extends Page<TypeSelectionBloc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Masuk'),
+      appBar: XTopBar(
+        textTitle: 'Masuk',
       ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            FlatButton(
+            XButton(
+              height: 60,
+              width: 200,
               color: mainColor,
-              onPressed: () => Navigator
-                .pushReplacementNamed(context, '/pemantaulogin'), 
-              child: Text('Sebagai Pemantau TPS', style: whiteSubtitleRegular,)
+              onTap: () => Navigator
+                .pushReplacementNamed(context, '/loginpemantau'), 
+              child: Text('Sebagai\nPemantau TPS', 
+                style: whiteSubtitleBold,
+                textAlign: TextAlign.center,
+              )
             ),
-            FlatButton(
-              shape: Border.all(color: greyColor),
-              onPressed: () => Navigator
-                .pushReplacementNamed(context, '/adminlogin'), 
-              child: Text('Sebagai Admin', style: blackSubtitleRegular,)
+            SizedBox(height: 30,),
+            XButton(
+              height: 50,
+              width: 200,
+              isBorder: true,
+              onTap: () => Navigator
+                .pushReplacementNamed(context, '/loginadmin'), 
+              child: Text('Sebagai Admin', 
+                style: blackSubtitleBold, 
+              )
             ),
           ] 
         ),
