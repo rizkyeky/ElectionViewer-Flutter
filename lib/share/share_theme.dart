@@ -3,14 +3,15 @@ part of 'share.dart';
 const EdgeInsets paddingPage =
     EdgeInsets.only(left: 48, top: 48, right: 48, bottom: 48);
 
-const Color mainColor = Color(0xFF2C3493);
-const Color accentColor = Color(0xFFE34B9E);
-const Color blackColor = Color(0xFF505152);
+const Color mainColor = Color(0xFF6C63FF);
+const Color blackColor = Color(0xFF2F2E41);
 const Color whiteColor = Color(0xFFFFFFFF);
 const Color canvasColor = Color(0xFFF4F4F4);
-const Color starColor = Color(0xFFF2C94C);
 const Color borderColor = Color(0xFFDBDBDB);
 const Color greyColor = Color(0xFF737373);
+
+TextStyle blackTitle = GoogleFonts.robotoSlab(
+  color: blackColor, fontSize: 24, fontWeight: FontWeight.bold);
 
 TextStyle blueTitle = GoogleFonts.robotoSlab(
   color: mainColor, fontSize: 24, fontWeight: FontWeight.bold);
