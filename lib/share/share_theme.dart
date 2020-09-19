@@ -45,3 +45,6 @@ TextStyle blackContentBold = GoogleFonts.robotoSlab(
 
 TextStyle whiteContent = GoogleFonts.robotoSlab(
   color: whiteColor, fontSize: 16, fontWeight: FontWeight.normal);
+
+TextStyle blackNumber = GoogleFonts.fjallaOne(
+  color: blackColor, fontSize: 24, fontWeight: FontWeight.bold);
