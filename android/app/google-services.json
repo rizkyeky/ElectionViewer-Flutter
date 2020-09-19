@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "848617577399",
+    "firebase_url": "https://pilkadapalu.firebaseio.com",
+    "project_id": "pilkadapalu",
+    "storage_bucket": "pilkadapalu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848617577399:android:d63e4763f9cb5ada502632",
+        "android_client_info": {
+          "package_name": "com.rizkyeky.pilkadaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848617577399-1ai658c1mo7q16t4t9nfaf2bbjso2rhs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1vLBIRKZDgicf4zBDRlCuuos7mbCaYXs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848617577399-1ai658c1mo7q16t4t9nfaf2bbjso2rhs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
