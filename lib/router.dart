@@ -11,8 +11,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => TypeSelectionPage());
       case '/loginadmin':
         return MaterialPageRoute(builder: (_) => LogInAdminPage());
-      // case '/booktime':
-      //   return MaterialPageRoute(builder: (_) => BookTimePage());
+      case '/loginpemantau':
+        return MaterialPageRoute(builder: (_) => LogInPemantauPage());
       // case '/bookseat':
       //   return MaterialPageRoute(builder: (_) => BookSeatPage());
       // case '/checkout':
