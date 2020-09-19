@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:pemilihan_app/bloc/bloc.dart';
 import 'package:pemilihan_app/share/share.dart';
 import 'package:pemilihan_app/locator.dart';
 
+import 'component/component.dart';
+
 part 'page_typeselection.dart';
+part 'page_loginadmin.dart';
+part 'page_loginpemantau.dart';
+part 'page_dataviewer.dart';
 
 SnackBar snackBar({
   String contentText, String labelText, VoidCallback onPressed

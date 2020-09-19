@@ -11,36 +11,38 @@ class TypeSelectionPage extends Page<TypeSelectionBloc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: XTopBar(
-        textTitle: 'Masuk',
-      ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            XButton(
-              height: 60,
-              width: 200,
-              color: mainColor,
-              onTap: () => Navigator
-                .pushReplacementNamed(context, '/loginpemantau'), 
-              child: Text('Sebagai\nPemantau TPS', 
-                style: whiteSubtitleBold,
-                textAlign: TextAlign.center,
-              )
-            ),
-            SizedBox(height: 30,),
-            XButton(
-              height: 50,
-              width: 200,
-              isBorder: true,
-              onTap: () => Navigator
-                .pushReplacementNamed(context, '/loginadmin'), 
-              child: Text('Sebagai Admin', 
-                style: blackSubtitleBold, 
-              )
-            ),
-          ] 
+      body: SafeArea(
+        child: Container(
+          height: 400,
+          margin: paddingPage,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Masuk', style: blackTitle,),
+              const SizedBox(height: 30,),
+              XButton(
+                height: 60,
+                color: mainColor,
+                onTap: () => Navigator
+                  .pushNamed(context, '/loginpemantau'), 
+                child: Text('Sebagai Pemantau TPS', 
+                  style: whiteSubtitleBold,
+                  textAlign: TextAlign.center,
+                )
+              ),
+              const SizedBox(height: 30,),
+              XButton(
+                height: 60,
+                isBorder: true,
+                onTap: () => Navigator
+                  .pushNamed(context, '/loginadmin'), 
+                child: Text('Sebagai Admin', 
+                  style: blueSubtitleBold.copyWith(color: greyColor), 
+                )
+              ),
+            ] 
+          ),
         ),
       ),
     );
