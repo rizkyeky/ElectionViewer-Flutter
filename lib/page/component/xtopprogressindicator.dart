@@ -4,10 +4,8 @@ part of 'component.dart';
 class XTopLinearProgressIndicator extends StatelessWidget
     implements PreferredSizeWidget {
 
-  final double value;
   final Color backgroundColor;
   final Color valueColor;
-  final bool isShow;
   final Stream<bool> stream;
   
   @override
@@ -15,11 +13,9 @@ class XTopLinearProgressIndicator extends StatelessWidget
   
   const XTopLinearProgressIndicator({
     Key key,
-    this.value,
     this.backgroundColor,
     this.valueColor,
     this.stream,
-    this.isShow = true
   }) : super(key: key);
 
   @override
@@ -29,9 +25,8 @@ class XTopLinearProgressIndicator extends StatelessWidget
         initialData: false,
         stream: stream,
         builder: (context, snapshot) => (snapshot.data) ? LinearProgressIndicator(
-          value: value,
-          backgroundColor: backgroundColor,
-          valueColor: AlwaysStoppedAnimation<Color>(valueColor),
+          backgroundColor: backgroundColor ?? whiteColor,
+          valueColor: AlwaysStoppedAnimation<Color>(valueColor ?? mainColor),
         )
         : const SizedBox(height: 6,)
       ),

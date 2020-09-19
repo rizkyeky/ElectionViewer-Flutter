@@ -28,7 +28,9 @@ class XButton extends StatelessWidget {
         type: MaterialType.card,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
-          side: isBorder ? const BorderSide(color: blackColor) : BorderSide.none
+          side: isBorder 
+            ? const BorderSide(color: borderColor, width: 3) 
+            : BorderSide.none
         ),
       child: InkWell(
         onTap: onTap,
@@ -36,7 +38,7 @@ class XButton extends StatelessWidget {
           alignment: Alignment.center,
           constraints: BoxConstraints.expand(
             width: width ?? 240,
-            height: height ?? 42
+            height: height ?? 40
           ),
           child: child,
         ),
