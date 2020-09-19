@@ -57,7 +57,7 @@ class LogInAdminPage extends Page<LogInAdminBloc> {
                   //     _emailText.text, _passwordText.text)
                   //     .then((value) {
                   //       if (value == 'User Active') {
-                  //         Navigator.pushReplacementNamed(context, '/');
+                          Navigator.pushReplacementNamed(context, '/dataviewer');
                   //       }
                   //       else {
                   //         Scaffold.of(contextScaffold).showSnackBar(snackBar(

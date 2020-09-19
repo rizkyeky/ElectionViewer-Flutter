@@ -58,7 +58,7 @@ class LogInPemantauPage extends Page<LogInPemantauBloc> {
                   //     _emailText.text, _passwordText.text)
                   //     .then((value) {
                   //       if (value == 'User Active') {
-                          Navigator.pushReplacementNamed(context, '/');
+                          // Navigator.pushReplacementNamed(context, '/');
                   //       }
                   //       else {
                   //         Scaffold.of(contextScaffold).showSnackBar(snackBar(
