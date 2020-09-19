@@ -36,6 +36,7 @@ dependencies:
   get_it: ^5.0.0
   google_fonts: ^1.1.0
   flutter_svg: ^0.19.0
+  fl_chart: ^0.11.1
 
 dev_dependencies:
   lint: ^1.2.0
