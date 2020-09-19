@@ -1,16 +1,16 @@
 // import 'package:flutix_training/model/model.dart';
 import 'package:flutter/material.dart';
+import 'package:pemilihan_app/page/page.dart';
 // import 'view/page/page.dart';
 // import 'Model/Model.dart';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      // case '/':
-      //   return MaterialPageRoute(builder: (_) => MainTabBarPage());
-      // case '/detailmovie':
-      //   final Movie movie = settings.arguments as Movie;
-      //   return MaterialPageRoute(builder: (_) => DetailMoviePage(movie));
+      case '/':
+        return MaterialPageRoute(builder: (_) => TypeSelectionPage());
+      case '/loginadmin':
+        return MaterialPageRoute(builder: (_) => LogInAdminPage());
       // case '/booktime':
       //   return MaterialPageRoute(builder: (_) => BookTimePage());
       // case '/bookseat':

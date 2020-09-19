@@ -18,7 +18,7 @@ void setupLocator() {
   // locator.registerLazySingleton(() => TransactionService(), instanceName: 'Transaction Service');
   
   locator.registerFactory(() => TypeSelectionBloc());
-  // locator.registerFactory(() => MainTabBarBloc());
+  locator.registerFactory(() => LogInAdminBloc());
   // locator.registerFactory(() => DetailMovieBloc());
   // locator.registerFactory(() => BookTimeBloc());
   // locator.registerFactory(() => BookSeatBloc());
