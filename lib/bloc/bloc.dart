@@ -4,6 +4,7 @@ import 'package:rxdart/rxdart.dart';
 
 import 'package:pemilihan_app/locator.dart';
 import 'package:pemilihan_app/service/service.dart';
+import 'package:pemilihan_app/model/model.dart';
 
 part 'bloc_typeselection.dart';
 part 'bloc_loginadmin.dart';
