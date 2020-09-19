@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pemilihan_app/share/share.dart';
 import 'locator.dart';
 import 'router.dart';
 
@@ -9,7 +10,7 @@ Future<void> main() async {
   setupLocator();
   await awaitSetupLocator();
   
-  runApp(App());
+  runApp(const App(isSignIn: true,));
 }
 
 class App extends StatelessWidget {
@@ -24,10 +25,13 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Pemilihan App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        cursorColor: mainColor,
+        primaryColor: mainColor,
+        accentColor: greyColor,
+        canvasColor: whiteColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: isSignIn ? '/' : '/signin',
+      initialRoute: '/',
       onGenerateRoute: Router.generateRoute,
     );
   }
