@@ -20,7 +20,7 @@ void setupLocator() {
   locator.registerFactory(() => TypeSelectionBloc());
   locator.registerFactory(() => LogInAdminBloc());
   locator.registerFactory(() => LogInPemantauBloc());
-  // locator.registerFactory(() => BookTimeBloc());
+  locator.registerFactory(() => DataViewerBloc());
   // locator.registerFactory(() => BookSeatBloc());
   // locator.registerFactory(() => CheckoutBloc());
   // locator.registerFactory(() => SignInBloc());

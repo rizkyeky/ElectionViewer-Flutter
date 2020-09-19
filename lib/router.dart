@@ -13,8 +13,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => LogInAdminPage());
       case '/loginpemantau':
         return MaterialPageRoute(builder: (_) => LogInPemantauPage());
-      // case '/bookseat':
-      //   return MaterialPageRoute(builder: (_) => BookSeatPage());
+      case '/dataviewer':
+        return MaterialPageRoute(builder: (_) => DataViewerPage());
       // case '/checkout':
       //   return MaterialPageRoute(builder: (_) => CheckoutPage());
       // case '/checkoutsuccess':
