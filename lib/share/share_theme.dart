@@ -1,7 +1,7 @@
 part of 'share.dart';
 
 const EdgeInsets paddingPage =
-    EdgeInsets.only(left: 48, top: 48, right: 48, bottom: 48);
+    EdgeInsets.only(left: 30, top: 30, right: 30, bottom: 30);
 
 const Color mainColor = Color(0xFF6C63FF);
 const Color blackColor = Color(0xFF2F2E41);
