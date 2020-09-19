@@ -10,10 +10,10 @@ class XTopBar extends AppBar {
     TextStyle textStyle, 
   }) : super(
     key: key,
-    backgroundColor: backgroundColor ?? mainColor,
+    backgroundColor: backgroundColor ?? whiteColor,
     centerTitle: true,
     elevation: 0,
-    title: Text(textTitle, style: textStyle ?? whiteTitle,),
+    title: Text(textTitle, style: textStyle ?? blackTitle,),
     leading: leading
   );
 }
