@@ -13,6 +13,7 @@ part 'page_loginadmin.dart';
 part 'page_loginpemantau.dart';
 part 'page_dataviewer.dart';
 part 'page_pemilihantempat.dart';
+part 'page_inputdata.dart';
 
 SnackBar snackBar({
   String contentText, String labelText, VoidCallback onPressed

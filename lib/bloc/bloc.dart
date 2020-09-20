@@ -11,6 +11,7 @@ part 'bloc_loginadmin.dart';
 part 'bloc_loginpemantau.dart';
 part 'bloc_dataviewer.dart';
 part 'bloc_pemilihantempat.dart';
+part 'bloc_inputdata.dart';
 
 abstract class Bloc {
   void init();
