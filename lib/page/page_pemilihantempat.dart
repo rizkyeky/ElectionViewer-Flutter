@@ -55,7 +55,7 @@ class PemilihanTempatPage extends Page<PemilihanTempatBloc> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: mainColor,
-        onPressed: () {}, 
+        onPressed: () => Navigator.pushNamed(context, '/inputdata'), 
         label: Text('Selesai', style: whiteSubtitleBold,),
         elevation: 0,
         highlightElevation: 0,

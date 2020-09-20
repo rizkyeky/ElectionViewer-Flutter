@@ -65,21 +65,18 @@ class DataViewerPage extends Page<DataViewerBloc> {
                 ),
               ),
               const SizedBox(height: 30,),
-              SizedBox(
-                height: 160,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: List.generate(bloc.calons.length, (index) => XBox(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Calon ${bloc.calons[index].nomor}', style: blackSubtitleRegular,),
-                        Text('${bloc.calons[index].jumlahPemilih}', style: blackNumber,)
-                      ],
-                    ),
-                  ))
-                ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: List.generate(bloc.calons.length, (index) => XBox(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Calon ${bloc.calons[index].nomor}', style: blackSubtitleRegular,),
+                      Text('${bloc.calons[index].jumlahPemilih}', style: blackNumber,)
+                    ],
+                  ),
+                ))
               ),
               const SizedBox(height: 30,),
             ],
