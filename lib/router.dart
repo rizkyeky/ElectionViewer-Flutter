@@ -17,8 +17,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => DataViewerPage());
       case '/pemilihantempat':
         return MaterialPageRoute(builder: (_) => PemilihanTempatPage());
-      // case '/checkoutsuccess':
-      //   return MaterialPageRoute(builder: (_) => const SuccessCheckoutPage());
+      case '/inputdata':
+        return MaterialPageRoute(builder: (_) => InputDataPage());
       // case '/signup':
       //   return MaterialPageRoute(builder: (_) => SignUpPage());
       // case '/signin':
