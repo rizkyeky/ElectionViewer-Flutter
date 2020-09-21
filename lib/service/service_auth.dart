@@ -2,7 +2,7 @@ part of 'service.dart';
 
 class AuthService {
   final fire_auth.FirebaseAuth _auth = fire_auth.FirebaseAuth.instance;
-  final UserService _userService = locator.get<UserService>(instanceName: 'User Service');
+  final PemantauService _pemantauService = locator.get<PemantauService>();
 
   bool _isSignIn = false;
   bool get isSignIn => _isSignIn;
@@ -12,26 +12,21 @@ class AuthService {
     _isSignIn = authUser != null;
 
     if (_isSignIn) {
-      final User user = await _userService.getUser(authUser.uid);
-      locator.call<User>(instanceName: 'User Active').duplicate(user);
+      // final Pemantau user = await _pemantauService.getPemantau(authUser.uid);
+      // locator.call<Pemantau>(instanceName: 'User Active').duplicate(user);
     }
   }
 
-  Future<AuthResult> signUp(String name, String email, String password, 
-  {List<String> favoriteGenre = const [], List<String> favoriteCountry = const []}) async {
+  Future<AuthResult> signUp(String nama, String email, String password) async {
 
     try {
       final fire_auth.UserCredential result = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
       
-      final User user = await _userService.setUser(User(
+      final Pemantau user = await _pemantauService.setPemantau(Pemantau(
         result.user.uid,
-        name,
+        nama,
         email,
-        '',
-        favoriteGenre,
-        favoriteCountry,
-        []
       ));  
       
       return AuthResult(user: user);
@@ -59,7 +54,7 @@ class AuthService {
       final fire_auth.UserCredential result = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
       
-      final User user = await _userService.getUser(result.user.uid);
+      final Pemantau user = await _pemantauService.getPemantau(result.user.uid);
       return AuthResult(user: user);
 
     } on fire_auth.FirebaseAuthException catch (e) {
@@ -89,7 +84,7 @@ class AuthService {
 }
 
 class AuthResult {
-  final User user;
+  final Pemantau user;
   final String message;
 
   AuthResult({this.user, this.message});
