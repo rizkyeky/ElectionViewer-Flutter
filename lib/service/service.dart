@@ -12,3 +12,4 @@ part 'service_core.dart';
 part 'service_auth.dart';
 part 'service_pemantau.dart';
 part 'service_admin.dart';
+part 'service_calon.dart';
