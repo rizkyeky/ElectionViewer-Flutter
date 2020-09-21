@@ -10,5 +10,5 @@ import 'package:pemilihan_app/model/model.dart';
 
 part 'service_core.dart';
 part 'service_auth.dart';
-part 'service_user.dart';
+part 'service_pemantau.dart';
 part 'service_admin.dart';
