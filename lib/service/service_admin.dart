@@ -1,6 +1,5 @@
 part of 'service.dart';
 
-
 class AdminService {
   final fire_store.CollectionReference _userCollection = fire_store.FirebaseFirestore
     .instance.collection('user'); 
@@ -8,25 +7,19 @@ class AdminService {
   Future<void> createAdmin(Admin admin) async {
     await _userCollection.doc(admin.id).set({
       'email': admin.email,
+      'nama': admin.nama,
     });
   }
 
-  Future<void> updateAdmin(String id, {String email, String name, String photoURL, 
-  List<String> favGenres, List<String> favCountries}) async {
+  Future<void> updateAdmin(String id, {String email, String nama}) async {
     
     final Map<String, dynamic> data = {};
 
     if (email != null) {
       data['email'] = email;
     }
-    if (name != null) {
-      data['name'] = name;
-    }
-    if (favGenres != null) {
-      data['favoriteGenre'] = favGenres.join(',');
-    }
-    if (favCountries != null) {
-      data['favoriteCountry'] = favCountries.join(',');
+    if (nama != null) {
+      data['name'] = nama;
     }
     
     await _userCollection.doc(id).update(data);
