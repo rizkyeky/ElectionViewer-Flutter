@@ -14,8 +14,14 @@ import 'package:pemilihan_app/service/service.dart';
 import 'package:pemilihan_app/main.dart';
 
 Future<void> main() async {
-  KecamatanService _service = KecamatanService();
+  // final KecamatanService _serviceKeca = KecamatanService();
+  // final KelurahanService _serviceKelu = KelurahanService();
 
-  List<Kecamatan> list = await _service.getKecamatans();
-  list.forEach((element) {print(element.name);});
+  // final List<Kecamatan> listKec = await _serviceKeca.getKecamatans();
+  
+  // for (var kec in listKec) {
+  //   print('${kec.name} ${kec.id}');
+  //   final List<Kelurahan> listKel = await _serviceKelu.getKelurahans(kec.id);
+  //   listKel.forEach((element) {print('-${element.name}');});
+  // }
 }
