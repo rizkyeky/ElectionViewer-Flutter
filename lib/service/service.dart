@@ -15,3 +15,4 @@ part 'service_auth.dart';
 part 'service_user.dart';
 part 'service_calon.dart';
 part 'service_kecamatan.dart';
+part 'service_kelurahan.dart';
