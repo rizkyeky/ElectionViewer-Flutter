@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pemilihan_app/bloc/bloc.dart';
 import 'package:pemilihan_app/share/share.dart';
 import 'package:pemilihan_app/locator.dart';
+import 'package:pemilihan_app/model/model.dart';
 
 import 'component/component.dart';
 
