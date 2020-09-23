@@ -18,7 +18,7 @@ class LogInAdminBloc implements Bloc {
   Future<String> logIn(String name, String password) async {
     _loadingController.sink.add(true);
     final AuthResult result = await _authService.signIn(
-      name, password).whenComplete(() => _loadingController.sink.add(false));
+      name, password, TypeUser.admin).whenComplete(() => _loadingController.sink.add(false));
 
     if (result.user != null) {
       return 'User Active';
