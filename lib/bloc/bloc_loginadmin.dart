@@ -2,7 +2,7 @@ part of 'bloc.dart';
 
 class LogInAdminBloc implements Bloc {
 
-  final AuthService _authService = locator.get<AuthService>(instanceName: 'Auth Service');
+  final AuthService _authService = locator.get<AuthService>(instanceName: 'Service Auth');
 
   final BehaviorSubject<bool> _loadingController = BehaviorSubject();
   Stream<bool> get isLoadingStream => _loadingController.stream;
