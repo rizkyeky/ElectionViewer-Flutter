@@ -2,12 +2,16 @@ part of 'model.dart';
 
 class Calon {
   String id;
-  int nomor;
-  String nama;
+  String name;
+  int number;
   int suara;
   String photoURL;
 
-  Calon(this.id, this.nama) {
+  Calon(this.id, this.name) {
+    number = 0;
     suara = 2000;
+    photoURL = '';
   }
+
+  factory Calon.initial() => Calon('', '');
 }
