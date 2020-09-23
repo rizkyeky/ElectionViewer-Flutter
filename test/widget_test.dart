@@ -7,13 +7,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pemilihan_app/model/model.dart';
+
 import 'package:pemilihan_app/service/service.dart';
 
 import 'package:pemilihan_app/main.dart';
 
 Future<void> main() async {
-  TestWidgetsFlutterBinding.ensureInitialized();
-  await CoreService().init();
+  KecamatanService _service = KecamatanService();
 
-  await UserService.findType('V3eM9KN4529999FBPbTD');
+  List<Kecamatan> list = await _service.getKecamatans();
+  list.forEach((element) {print(element.name);});
 }
