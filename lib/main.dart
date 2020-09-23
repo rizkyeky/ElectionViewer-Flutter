@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pemilihan_app/service/service.dart';
 import 'package:pemilihan_app/share/share.dart';
 import 'locator.dart';
 import 'router.dart';
@@ -10,6 +11,8 @@ Future<void> main() async {
   setupLocator();
   await awaitSetupLocator();
   
+  await UserService.findType('V3eM9KN4529999FBPbTD');
+
   runApp(const App(isSignIn: true,));
 }
 
