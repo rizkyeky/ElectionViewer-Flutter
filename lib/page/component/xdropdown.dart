@@ -3,11 +3,15 @@ part of 'component.dart';
 class XDropDown<T> extends StatefulWidget {
 
   final int length;
-  final Widget Function(BuildContext, int) childBuilder;
+  final Widget Function(BuildContext, int) childrenBuilder;
+  final void Function(int) onSelected;
+  final bool isDisabled;
 
   const XDropDown({
     this.length,
-    this.childBuilder,
+    this.childrenBuilder,
+    this.onSelected,
+    this.isDisabled = false
   });
 
   @override
@@ -26,18 +30,21 @@ class _XDropDownState extends State<XDropDown> {
 
   @override
   Widget build(BuildContext context) {
-    return XBox(
+    return (!widget.isDisabled) ? XBox(
       child: DropdownButtonHideUnderline(
         child: DropdownButton<int>(
           value: currValue,
           elevation: 0,
-          onChanged: (value) => setState(() => currValue = value),
+          onChanged: (value) {
+            setState(() => currValue = value);
+            if (widget.onSelected != null) widget.onSelected(value); 
+          },
           items: List.generate(widget.length, (index) => DropdownMenuItem<int>(
             value: index,
-            child: widget.childBuilder(context, index),
+            child: widget.childrenBuilder(context, index),
           )),
         ),
       ),
-    );
+    ) : const XBox(borderColor: borderColor, height: 50,);
   }
 }
