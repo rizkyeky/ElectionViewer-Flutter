@@ -42,8 +42,8 @@ Future<void> awaitSetupLocator() async {
   await locator.allReady();
 
   // Setup service
-  await locator<CoreService>().init();
-  await locator<AuthService>().init();
+  await locator<CoreService>(instanceName: 'Service Core').init();
+  await locator<AuthService>(instanceName: 'Service Auth').init();
 
   // print("setup locator success");
 }
