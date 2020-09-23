@@ -22,12 +22,13 @@ class KecamatanService {
         final List result = data['kecamatan'] as List;
         
         // print('respone success');
+        // print(result);
         
         return result.map<Kecamatan>((e) => Kecamatan
           .fromJson(e as Map<String, dynamic>)).toList();
       }
     } catch (e) {
-      // print('request was failed');
+      print('request was failed');
       return [];
     }
   }
