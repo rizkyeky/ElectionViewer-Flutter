@@ -72,7 +72,7 @@ class DataViewerPage extends Page<DataViewerBloc> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Calon ${bloc.calons[index].nomor}', style: blackSubtitleRegular,),
+                      Text('Calon ${bloc.calons[index].number}', style: blackSubtitleRegular,),
                       Text('${bloc.calons[index].suara}', style: blackNumber,)
                     ],
                   ),
