@@ -2,8 +2,7 @@ part of 'service.dart';
 
 class AuthService {
   final fire_auth.FirebaseAuth _auth = fire_auth.FirebaseAuth.instance;
-  final PemantauService _pemantauService = locator.get<PemantauService>();
-
+  
   bool _isSignIn = false;
   bool get isSignIn => _isSignIn;
 
@@ -11,24 +10,48 @@ class AuthService {
     final fire_auth.User authUser = await _auth.authStateChanges().first;
     _isSignIn = authUser != null;
 
+    UserService _userService;
+    final TypeUser type = await UserService.findType(authUser.uid);
+    if (type == TypeUser.admin) {
+      _userService = UserService.admin();
+    } else if (type == TypeUser.pemantau) {
+      _userService = UserService.pemantau();
+    }
+
     if (_isSignIn) {
-      // final Pemantau user = await _pemantauService.getPemantau(authUser.uid);
-      // locator.call<Pemantau>(instanceName: 'User Active').duplicate(user);
+      final User user = await _userService.getUser(authUser.uid);
+      locator.call<User>(instanceName: 'User Active').duplicate(user);
     }
   }
 
-  Future<AuthResult> signUp(String nama, String email, String password) async {
+  Future<AuthResult> signUp(String name, String email, String password, TypeUser type) async {
 
     try {
       final fire_auth.UserCredential result = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
-      
-      final Pemantau user = await _pemantauService.setPemantau(Pemantau(
-        result.user.uid,
-        nama,
-        email,
-      ));  
-      
+
+      UserService _userService;
+      if (type == TypeUser.admin) {
+        _userService = UserService.admin();
+      } else if (type == TypeUser.pemantau) {
+        _userService = UserService.pemantau();
+      }
+
+      User user;
+      if (type == TypeUser.admin) {
+        await _userService.createUser(Admin(
+          result.user.uid,
+          name,
+          email,
+        ));  
+      } else if (type == TypeUser.pemantau) {
+        await _userService.createUser(Pemantau(
+          result.user.uid,
+          name,
+          email,
+        ));
+      }
+
       return AuthResult(user: user);
     
     } on fire_auth.FirebaseAuthException catch (e) {
@@ -49,12 +72,20 @@ class AuthService {
     }
   }
 
-  Future<AuthResult> signIn(String email, String password) async {
+  Future<AuthResult> signIn(String email, String password, TypeUser type) async {
     try {
       final fire_auth.UserCredential result = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
+
+      UserService _userService;
+      final TypeUser type = await UserService.findType(result.user.uid);
+      if (type == TypeUser.admin) {
+        _userService = UserService.admin();
+      } else if (type == TypeUser.pemantau) {
+        _userService = UserService.pemantau();
+      }
       
-      final Pemantau user = await _pemantauService.getPemantau(result.user.uid);
+      final User user = await _userService.getUser(result.user.uid);
       return AuthResult(user: user);
 
     } on fire_auth.FirebaseAuthException catch (e) {
@@ -84,7 +115,7 @@ class AuthService {
 }
 
 class AuthResult {
-  final Pemantau user;
+  final User user;
   final String message;
 
   AuthResult({this.user, this.message});
