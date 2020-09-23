@@ -9,11 +9,12 @@ GetIt locator = GetIt.instance;
 void setupLocator() {
 
   // Waiting for first launch
-  locator.registerLazySingleton(() => CoreService());
-  locator.registerLazySingleton(() => AuthService());
+  locator.registerLazySingleton(() => CoreService(), instanceName: 'Service Core');
+  locator.registerLazySingleton(() => AuthService(), instanceName: 'Service Auth');
   locator.registerLazySingleton(() => UserService.admin(), instanceName: 'Service Admin');
   locator.registerLazySingleton(() => UserService.pemantau(), instanceName: 'Service Pemantau');
-  // locator.registerLazySingleton(() => LocalService(), instanceName: 'Local Service');
+  locator.registerLazySingleton(() => KecamatanService(), instanceName: 'Service Kecamatan');
+  locator.registerLazySingleton(() => KelurahanService(), instanceName: 'Service Kelurahan');
   // locator.registerLazySingleton(() => TicketService(), instanceName: 'Ticket Service');
   // locator.registerLazySingleton(() => TransactionService(), instanceName: 'Transaction Service');
   
