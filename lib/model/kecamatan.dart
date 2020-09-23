@@ -9,4 +9,7 @@ class Kecamatan {
     (json['id'] as num).toInt(),
     json['nama'] as String
   );
+
+  @override
+  String toString() => name; 
 }

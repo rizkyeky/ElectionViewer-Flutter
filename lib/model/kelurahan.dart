@@ -8,5 +8,8 @@ class Kelurahan {
   factory Kelurahan.fromJson(Map<String, dynamic> json) => Kelurahan(
     (json['id'] as num).toInt(),
     json['nama'] as String
-  );  
+  );
+
+  @override
+  String toString() => name;
 }
