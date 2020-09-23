@@ -7,13 +7,13 @@ class CalonService {
 
   Future<void> createCalon(Calon calon) async {
     await _calonCollection.doc(calon.id).set({
-      'nama': calon.nama,
-      'nomor': calon.nomor,
+      'nama': calon.name,
+      'nomor': calon.number,
       'suara': calon.suara,
     });
   }
 
-  Future<void> updateCalon(String id, {String email, String nama, String photoURL, 
+  Future<void> updateCalon(String id, {String email, String name, String photoURL, 
   int suara}) async {
     
     final Map<String, dynamic> data = {};
@@ -21,8 +21,8 @@ class CalonService {
     if (email != null) {
       data['email'] = email;
     }
-    if (nama != null) {
-      data['nama'] = nama;
+    if (name != null) {
+      data['nama'] = name;
     }
     if (suara != null) {
       data['suara'] = suara;
