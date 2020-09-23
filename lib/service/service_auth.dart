@@ -11,14 +11,16 @@ class AuthService {
     _isSignIn = authUser != null;
 
     UserService _userService;
-    final TypeUser type = await UserService.findType(authUser.uid);
-    if (type == TypeUser.admin) {
-      _userService = UserService.admin();
-    } else if (type == TypeUser.pemantau) {
-      _userService = UserService.pemantau();
-    }
-
+    
     if (_isSignIn) {
+      final TypeUser type = await UserService.findType(authUser.uid);
+      
+      if (type == TypeUser.admin) {
+        _userService = locator.get<UserService>(instanceName: 'Service Admin');
+      } else if (type == TypeUser.pemantau) {
+        _userService = locator.get<UserService>(instanceName: 'Service Pemantau');
+      }
+
       final User user = await _userService.getUser(authUser.uid);
       locator.call<User>(instanceName: 'User Active').duplicate(user);
     }
