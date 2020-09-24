@@ -2,15 +2,21 @@ part of 'service.dart';
 
 class UserService {
 
-  String type;
+  TypeUser type;
   fire_store.CollectionReference _userCollection;
 
   UserService(this.type) {
-    _userCollection = fire_store.FirebaseFirestore.instance.collection(type); 
+    String strType = '';
+    if (type == TypeUser.admin) {
+      strType = 'admin';
+    } else {
+      strType = 'pemantau';
+    }
+    _userCollection = fire_store.FirebaseFirestore.instance.collection(strType); 
   }
 
-  factory UserService.admin() => UserService('admin');
-  factory UserService.pemantau() => UserService('pemantau');
+  factory UserService.admin() => UserService(TypeUser.admin);
+  factory UserService.pemantau() => UserService(TypeUser.pemantau);
 
   static Future<TypeUser> findType(String id) async {
 
@@ -38,13 +44,19 @@ class UserService {
   }
 
   Future<void> createUser(User user) async {
-    await _userCollection.doc(user.id).set({
+    final Map<String, dynamic> data = {
       'nama': user.name,
       'email': user.email,
-    });
+    };
+    
+    if (type == TypeUser.pemantau) {
+      data['hak_input'] = (user as Pemantau).hakInput; 
+    }
+
+    await _userCollection.doc(user.id).set(data);
   }
 
-  Future<void> updateUser(String id, {String name, String email,}) async {
+  Future<void> updateUser(String id, {String name, String email, bool hakInput}) async {
     
     final Map<String, dynamic> data = {};
 
@@ -54,6 +66,9 @@ class UserService {
     if (email != null) {
       data['email'] = email;
     }
+    if (hakInput != null && type == TypeUser.pemantau) {
+      data['hak_input'] = hakInput;
+    }
     
     await _userCollection.doc(id).update(data);
   }
@@ -61,7 +76,7 @@ class UserService {
   Future<User> getUser(String id) async {
     final fire_store.DocumentSnapshot snapshot = await _userCollection.doc(id).get();
 
-    if (type == 'admin') {
+    if (type == TypeUser.admin) {
       return Admin(
         id,
         snapshot.data()["nama"] as String,
@@ -72,6 +87,7 @@ class UserService {
         id,
         snapshot.data()["nama"] as String,
         snapshot.data()["email"] as String,
+        hakInput: snapshot.data()["hak_input"] as bool
       );
     }
   }
