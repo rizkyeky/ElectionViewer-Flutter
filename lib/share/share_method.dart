@@ -18,7 +18,7 @@ part of 'share.dart';
 // }
 
 String convertCurr(int value) {
-  final NumberFormat formatCurrency = NumberFormat.simpleCurrency(decimalDigits: 0);
+  final NumberFormat formatCurrency = NumberFormat.simpleCurrency(name: '', decimalDigits: 0);
   return formatCurrency.format(value);
 }
 
