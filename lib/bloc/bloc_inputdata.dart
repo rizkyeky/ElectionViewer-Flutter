@@ -35,13 +35,16 @@ class InputDataBloc implements Bloc {
     _calons[index].copyWith(tidaksahSuara: value);
   }
 
-  void sendSuara() {
+  Future<void> sendSuara() async {
     for (final Calon calon in _calons) {
-      _calonService.updateCalon(calon.id,
+      await _calonService.updateCalon(calon.id,
         totalSuara: calon.sahSuara + calon.tidaksahSuara, 
         tidaksahSuara: calon.tidaksahSuara,
         sahSuara: calon.sahSuara
       );
     }
+    locator.call<Pemantau>(instanceName: 'Pemantau Active').copyWith(hakInput: false);
   }
+  bool get hakInputPemantau => locator
+    .get<Pemantau>(instanceName: 'Pemantau Active').hakInput;
 }
