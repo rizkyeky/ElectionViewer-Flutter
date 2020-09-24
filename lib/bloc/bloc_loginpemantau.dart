@@ -27,4 +27,10 @@ class LogInPemantauBloc implements Bloc {
       return result.message;
     }
   }
+
+  void createPemantau() {
+    if (!locator.isRegistered<Pemantau>(instanceName: 'Pemantau Active')) {
+      locator.registerSingleton(Pemantau.initial(), instanceName: 'Pemantau Active');
+    }
+  }
 }
