@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pemilihan_app/service/service.dart';
+// import 'package:pemilihan_app/service/service.dart';
 import 'package:pemilihan_app/share/share.dart';
 import 'locator.dart';
 import 'router.dart';
@@ -10,17 +10,13 @@ Future<void> main() async {
   
   setupLocator();
   await awaitSetupLocator();
-  
-  await UserService.findType('V3eM9KN4529999FBPbTD');
 
-  runApp(const App(isSignIn: true,));
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
   
-  final bool isSignIn;
-
-  const App({this.isSignIn});
+  const App();
 
   @override
   Widget build(BuildContext context) {
