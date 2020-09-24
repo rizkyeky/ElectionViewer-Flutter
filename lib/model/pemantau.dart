@@ -17,7 +17,11 @@ class Pemantau implements User {
   factory Pemantau.initial() => Pemantau('', '', '');
 
   @override
-  void copyWith({String id, String name, String email}) {
+  void copyWith({String id, String name, String email, bool hakInput}) {
+    this.id = id ?? this.id;
+    this.name = name ?? this.name;
+    this.email = email ?? this.email;
+    this.hakInput = hakInput ?? this.hakInput; 
   }
   
   @override
