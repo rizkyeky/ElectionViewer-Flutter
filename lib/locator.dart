@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 
 import 'bloc/bloc.dart';
-import 'model/model.dart';
+// import 'model/model.dart';
 import 'service/service.dart';
 
 GetIt locator = GetIt.instance;
@@ -15,8 +15,8 @@ void setupLocator() {
   locator.registerLazySingleton(() => UserService.pemantau(), instanceName: 'Service Pemantau');
   locator.registerLazySingleton(() => KecamatanService(), instanceName: 'Service Kecamatan');
   locator.registerLazySingleton(() => KelurahanService(), instanceName: 'Service Kelurahan');
-  // locator.registerLazySingleton(() => TicketService(), instanceName: 'Ticket Service');
-  // locator.registerLazySingleton(() => TransactionService(), instanceName: 'Transaction Service');
+  locator.registerLazySingleton(() => CalonService(), instanceName: 'Service Calon');
+  locator.registerLazySingleton(() => SuaraService(), instanceName: 'Service Suara');
   
   locator.registerFactory(() => TypeSelectionBloc());
   locator.registerFactory(() => LogInAdminBloc());
