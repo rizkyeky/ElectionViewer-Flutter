@@ -11,8 +11,9 @@ class Pemantau implements User {
   @override
   String name;
 
+  bool hakInput;
 
-  Pemantau(this.id, this.name, this.email);
+  Pemantau(this.id, this.name, this.email, {this.hakInput = true});
   factory Pemantau.initial() => Pemantau('', '', '');
 
   @override
