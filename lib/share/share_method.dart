@@ -17,8 +17,8 @@ part of 'share.dart';
 //   return snapshot.ref.getDownloadURL() as String;
 // }
 
-String convertCurrRP(int value) {
-  final NumberFormat formatCurrency = NumberFormat.simpleCurrency(name: 'IDR', decimalDigits: 0);
+String convertCurr(int value) {
+  final NumberFormat formatCurrency = NumberFormat.simpleCurrency(decimalDigits: 0);
   return formatCurrency.format(value);
 }
 
