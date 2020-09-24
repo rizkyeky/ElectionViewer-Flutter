@@ -17,6 +17,9 @@ class CalonService {
 
   Future<void> updateCalon(String id, {String email, String name, String photoURL, 
   int totalSuara, int sahSuara, int tidaksahSuara}) async {
+
+    final fire_store.DocumentSnapshot snapshot = await _calonCollection
+      .doc(id).get();
     
     final Map<String, dynamic> data = {};
 
@@ -27,13 +30,13 @@ class CalonService {
       data['nama'] = name;
     }
     if (totalSuara != null) {
-      data['total_suara'] = totalSuara;
+      data['total_suara'] = totalSuara + (snapshot.data()['total_suara'] as num).toInt();
     }
     if (sahSuara != null) {
-      data['suara_sah'] = sahSuara;
+      data['suara_sah'] = sahSuara + (snapshot.data()['suara_sah'] as num).toInt();
     }
     if (tidaksahSuara != null) {
-      data['suara_tidak_sah'] = tidaksahSuara;
+      data['suara_tidak_sah'] = tidaksahSuara  + (snapshot.data()['suara_tidak_sah'] as num).toInt();
     }
     
     await _calonCollection.doc(id).update(data);
