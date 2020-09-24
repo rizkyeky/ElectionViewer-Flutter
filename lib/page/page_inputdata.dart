@@ -17,41 +17,50 @@ class InputDataPage extends Page<InputDataBloc> {
       borderColor: borderColor,
       padding: const EdgeInsets.all(15),
       height: 250,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
+      child: FutureBuilder<Calon>(
+        future: bloc.getCalon(index),
+        builder: (context, snapshotFuture) => (snapshotFuture.hasData) ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Calon $index', style: blackSubtitleBold,),
-                  Text('Rizky', style: blackSubtitleRegular,),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Calon $index', style: blackSubtitleBold,),
+                      Text('Rizky', style: blackSubtitleRegular,),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text('Total Suara', style: blackContentRegular,),
+                      StreamBuilder<int>(
+                        initialData: snapshotFuture.data.suara,
+                        stream: bloc.getSuaraCalon(index),
+                        builder: (context, snapshotStream) {
+                          return Text(convertCurr(snapshotStream.data), style: blackNumber,);
+                        }
+                      ),
+                    ],
+                  ),
                 ],
               ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text('Total Suara', style: blackContentRegular,),
-                  Text('12.000', style: blackNumber,),
+                  XTextField(
+                    text: 'Suara Sah',
+                  ),
+                  const SizedBox(height: 15,),
+                  XTextField(
+                    text: 'Suara Tidak Sah',
+                  ),
                 ],
-              ),
+              )
             ],
-          ),
-          Column(
-            children: [
-              XTextField(
-                text: 'Suara Sah',
-              ),
-              const SizedBox(height: 15,),
-              XTextField(
-                text: 'Suara Tidak Sah',
-              ),
-            ],
-          )
-        ],
+          ) : const Center(child: CircularProgressIndicator(),)
       ),
     );
   }
