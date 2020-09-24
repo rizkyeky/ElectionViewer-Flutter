@@ -50,8 +50,6 @@ class PemilihanTempatBloc implements Bloc {
       _selectedTempat.remove('tps');
     }
     if (indexTPS != null) _selectedTempat['tps'] = _tpses[indexTPS];
-
-    print(_selectedTempat);
   }
 
   void updatePemilihanStream({List kec, List kel, List tps}) {
