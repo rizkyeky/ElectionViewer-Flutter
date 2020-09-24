@@ -30,7 +30,7 @@ class InputDataPage extends Page<InputDataBloc> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Calon $index', style: blackSubtitleBold,),
-                      Text('Rizky', style: blackSubtitleRegular,),
+                      Text(snapshotFuture.data.name, style: blackSubtitleRegular,),
                     ],
                   ),
                   Column(
@@ -38,7 +38,7 @@ class InputDataPage extends Page<InputDataBloc> {
                     children: [
                       Text('Total Suara', style: blackContentRegular,),
                       StreamBuilder<int>(
-                        initialData: snapshotFuture.data.suara,
+                        initialData: snapshotFuture.data.totalSuara,
                         stream: bloc.getSuaraCalon(index),
                         builder: (context, snapshotStream) {
                           return Text(convertCurr(snapshotStream.data), style: blackNumber,);
@@ -51,10 +51,18 @@ class InputDataPage extends Page<InputDataBloc> {
               Column(
                 children: [
                   XTextField(
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) {
+                      bloc.inputSahSuara(index, int.parse(value));
+                    },
                     text: 'Suara Sah',
                   ),
                   const SizedBox(height: 15,),
                   XTextField(
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) {
+                      bloc.inputTidakSahSuara(index, int.parse(value));
+                    },
                     text: 'Suara Tidak Sah',
                   ),
                 ],
@@ -81,7 +89,7 @@ class InputDataPage extends Page<InputDataBloc> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: mainColor,
-        onPressed: () {}, 
+        onPressed: () => bloc.sendSuara(), 
         label: Text('Kirim', style: whiteSubtitleBold,),
         elevation: 0,
         highlightElevation: 0,
