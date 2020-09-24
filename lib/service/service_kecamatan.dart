@@ -28,7 +28,7 @@ class KecamatanService {
           .fromJson(e as Map<String, dynamic>)).toList();
       }
     } catch (e) {
-      print('request was failed');
+      // print('request was failed');
       return [];
     }
   }
