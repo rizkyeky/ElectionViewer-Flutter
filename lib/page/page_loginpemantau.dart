@@ -46,7 +46,7 @@ class LogInPemantauPage extends Page<LogInPemantauBloc> {
                 color: mainColor,
                 width: 140,
                 onTap: () async {
-
+                  bloc.createPemantau();
                   // final bool isValidEmail = _emailText.text.contains(
                   //   RegExp(r'^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$')
                   // ); 
