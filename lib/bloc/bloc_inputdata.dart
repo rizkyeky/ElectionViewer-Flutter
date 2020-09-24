@@ -4,8 +4,8 @@ class InputDataBloc implements Bloc {
 
   final CalonService _calonService = locator
     .get<CalonService>(instanceName: 'Service Calon');
-  final SuaraService _suaraService = locator
-    .get<SuaraService>(instanceName: 'Service Suara');
+  // final SuaraService _suaraService = locator
+  //   .get<SuaraService>(instanceName: 'Service Suara');
 
   final List<Calon> _calons = [];
   List<Calon> get calons => _calons;
@@ -24,7 +24,24 @@ class InputDataBloc implements Bloc {
   }
 
   Stream<int> getSuaraCalon(int index) {
-    return _calonService.getCalon(_calons[index].id).asStream()
-      .map((event) => event.suara); 
+    return _calonService.streamSuaraCalon(_calons[index].id); 
+  }
+
+  void inputSahSuara(int index, int value) {
+    _calons[index].copyWith(sahSuara: value);
+  }
+
+  void inputTidakSahSuara(int index, int value) {
+    _calons[index].copyWith(tidaksahSuara: value);
+  }
+
+  void sendSuara() {
+    for (final Calon calon in _calons) {
+      _calonService.updateCalon(calon.id,
+        totalSuara: calon.sahSuara + calon.tidaksahSuara, 
+        tidaksahSuara: calon.tidaksahSuara,
+        sahSuara: calon.sahSuara
+      );
+    }
   }
 }
