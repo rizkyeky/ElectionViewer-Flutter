@@ -81,6 +81,7 @@ class AuthService {
 
       UserService _userService;
       final TypeUser type = await UserService.findType(result.user.uid);
+      
       if (type == TypeUser.admin) {
         _userService = UserService.admin();
       } else if (type == TypeUser.pemantau) {
@@ -88,6 +89,9 @@ class AuthService {
       }
       
       final User user = await _userService.getUser(result.user.uid);
+      if (type == TypeUser.admin) {
+
+      }
       return AuthResult(user: user);
 
     } on fire_auth.FirebaseAuthException catch (e) {
