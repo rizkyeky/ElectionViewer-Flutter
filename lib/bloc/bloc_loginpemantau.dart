@@ -16,9 +16,13 @@ class LogInPemantauBloc implements Bloc {
   void init() {}
 
   Future<String> logIn(String name, String password) async {
+    
     _loadingController.sink.add(true);
     final AuthResult result = await _authService.signIn(
-      name, password, TypeUser.pemantau).whenComplete(() => _loadingController.sink.add(false));
+      name, password, TypeUser.pemantau).whenComplete(() {
+        _loadingController.sink.add(false);
+      });
+      createPemantau(result);
 
     if (result.user != null) {
       return 'User Active';
@@ -28,9 +32,12 @@ class LogInPemantauBloc implements Bloc {
     }
   }
 
-  void createPemantau() {
+  void createPemantau(AuthResult result) {
     if (!locator.isRegistered<Pemantau>(instanceName: 'Pemantau Active')) {
       locator.registerSingleton(Pemantau.initial(), instanceName: 'Pemantau Active');
+      locator.call<Pemantau>(instanceName: 'Pemantau Active').duplicate(result.user);
+    } else {
+      locator.unregister<Pemantau>(instanceName: 'Pemantau Active');
     }
   }
 }
