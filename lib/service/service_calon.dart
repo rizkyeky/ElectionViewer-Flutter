@@ -37,6 +37,8 @@ class CalonService {
       tidaksahSuara: encrypt ? 0 : (e.data()["suara_tidak_sah"] as num).toInt(),
     )).toList();
 
+    data.sort((calon1, calon2) => calon1.number.compareTo(calon2.number));
+
     return data;
   }
 
