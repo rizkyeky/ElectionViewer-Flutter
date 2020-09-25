@@ -16,7 +16,7 @@ class LogInPemantauPage extends Page<LogInPemantauBloc> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: XTopLinearProgressIndicator(
-        stream: bloc.isLoadingStream,
+        stream: _bloc.isLoadingStream,
       ),
       body: Builder(
         builder: (contextScaffold) => SingleChildScrollView(
@@ -46,7 +46,7 @@ class LogInPemantauPage extends Page<LogInPemantauBloc> {
                 color: mainColor,
                 width: 140,
                 onTap: () async {
-                  bloc.createPemantau();
+                  _bloc.createPemantau();
                   // final bool isValidEmail = _emailText.text.contains(
                   //   RegExp(r'^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$')
                   // ); 
@@ -54,7 +54,7 @@ class LogInPemantauPage extends Page<LogInPemantauBloc> {
                   // final bool isValidPassword = _passwordText.text.length >= 6; 
 
                   // if (isValidEmail && isValidPassword) {
-                  //   await bloc.signIn(
+                  //   await _bloc.signIn(
                   //     _emailText.text, _passwordText.text)
                   //     .then((value) {
                   //       if (value == 'User Active') {
