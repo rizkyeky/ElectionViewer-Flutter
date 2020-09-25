@@ -16,7 +16,6 @@ void setupLocator() {
   locator.registerLazySingleton(() => KecamatanService(), instanceName: 'Service Kecamatan');
   locator.registerLazySingleton(() => KelurahanService(), instanceName: 'Service Kelurahan');
   locator.registerLazySingleton(() => CalonService(), instanceName: 'Service Calon');
-  locator.registerLazySingleton(() => SuaraService(), instanceName: 'Service Suara');
   
   locator.registerFactory(() => TypeSelectionBloc());
   locator.registerFactory(() => LogInAdminBloc());
