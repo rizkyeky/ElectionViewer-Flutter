@@ -7,13 +7,11 @@ class Calon {
   int totalSuara;
   int sahSuara;
   int tidaksahSuara;
-  String photoURL;
 
   Calon(this.id, this.name, this.number, {
     this.totalSuara = 0, 
     this.sahSuara = 0, 
     this.tidaksahSuara = 0, 
-    this.photoURL = ''
   });
   factory Calon.initial() => Calon('', '', 0);
 
