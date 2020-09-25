@@ -74,26 +74,29 @@ class AuthService {
   //   }
   // }
 
-  Future<AuthResult> signIn(String email, String password, TypeUser type) async {
+  Future<AuthResult> signIn(String email, String password, TypeUser requestType) async {
     try {
       final fire_auth.UserCredential result = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
 
       UserService _userService;
-      final TypeUser type = await UserService.findType(result.user.uid);
+      final TypeUser getType = await UserService.findType(result.user.uid);
       
-      if (type == TypeUser.admin) {
-        _userService = UserService.admin();
-      } else if (type == TypeUser.pemantau) {
-        _userService = UserService.pemantau();
+      if (getType == requestType) {
+        if (getType == TypeUser.admin) {
+          _userService = UserService.admin();
+        } else if (getType == TypeUser.pemantau) {
+          _userService = UserService.pemantau();
+        }
+
+        final User user = await _userService.getUser(result.user.uid);
+        return AuthResult(user: user);
+      
+      } else {
+        final String tmp = requestType == TypeUser.admin ? 'Admin' : 'Pemantau';
+        return AuthResult(message: 'Email is not $tmp');
       }
       
-      final User user = await _userService.getUser(result.user.uid);
-      if (type == TypeUser.admin) {
-
-      }
-      return AuthResult(user: user);
-
     } on fire_auth.FirebaseAuthException catch (e) {
 
       String errorType = 'Error Unknown';
@@ -104,8 +107,8 @@ class AuthService {
       else if (e.code == 'user-not-found') {
         errorType = 'Email is not found';
       }
-
       return AuthResult(message: errorType);
+      
     } catch (e) {
       return AuthResult(message: 'Error signUp: $e');
     }
