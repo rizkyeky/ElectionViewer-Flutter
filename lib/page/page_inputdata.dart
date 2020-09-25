@@ -3,14 +3,10 @@ part of 'page.dart';
 class InputDataPage extends Page<InputDataBloc> {
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-  }
+  void dispose() {}
 
   @override
-  void init() {
-    // TODO: implement init
-  }
+  void init() {}
 
   Widget buildInputBox(BuildContext context, Calon calon, int index) {
     return XBox(
@@ -36,10 +32,10 @@ class InputDataPage extends Page<InputDataBloc> {
                 children: [
                   Text('Total Suara', style: blackContentRegular,),
                   StreamBuilder<List<int>>(
-                    initialData: List.generate(bloc.calons.length, (index) => 0),
-                    stream: bloc.streamCountSuara,
+                    initialData: List.generate(_bloc.calons.length, (index) => 0),
+                    stream: _bloc.streamCountSuara,
                     builder: (context, snapshotStream) => 
-                      Text(convertCurr(snapshotStream.data[index]), 
+                      Text(snapshotStream.data[index].toString(), 
                         style: blackNumber,)
                   ),
                 ],
@@ -51,7 +47,7 @@ class InputDataPage extends Page<InputDataBloc> {
               XTextField(
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
-                  bloc.inputSahSuara(index, int.parse(value));
+                  _bloc.inputSahSuara(index, int.parse(value));
                 },
                 text: 'Suara Sah',
               ),
@@ -59,7 +55,7 @@ class InputDataPage extends Page<InputDataBloc> {
               XTextField(
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
-                  bloc.inputTidakSahSuara(index, int.parse(value));
+                  _bloc.inputTidakSahSuara(index, int.parse(value));
                 },
                 text: 'Suara Tidak Sah',
               ),
@@ -76,10 +72,10 @@ class InputDataPage extends Page<InputDataBloc> {
       appBar: XTopBar(
         textTitle: 'Input Data',
         isLoading: true,
-        isLoadingStream: bloc.isLoadingStream,
+        isLoadingStream: _bloc.isLoadingStream,
       ),
       body: FutureBuilder<List<Calon>>(
-        future: bloc.getCalons(),
+        future: _bloc.getCalons(),
         builder: (context, snapshot) => (snapshot.hasData) ? SingleChildScrollView(
           padding: const EdgeInsets.all(30),
           child: Column(
@@ -94,8 +90,8 @@ class InputDataPage extends Page<InputDataBloc> {
         builder: (context) => FloatingActionButton.extended(
           backgroundColor: mainColor,
           onPressed: () async{
-            if (bloc.hakInputPemantau) {
-              await bloc.sendSuara();
+            if (_bloc.hakInputPemantau) {
+              await _bloc.sendSuara();
             } else {
               Scaffold.of(context).showSnackBar(snackBar(
                 contentText: 'Pemantau sudah mengirim suara',
