@@ -23,23 +23,27 @@ class InputDataBloc implements Bloc {
   }
 
   @override
-  Future<void> init() async {
-  }
+  Future<void> init() async {}
 
   Future<List<Calon>> getCalons() async {
-    _calons.addAll(await _calonService.getCalons());
-    
-    _countSuaraController.sink.add(
-      List.generate(_calons.length, (index) => 0)
-    );
-    
-    for (int i = 0; i < _calons.length; i++) {
-      _inputSuaraCalons.add({
-        'total_suara': 0,
-        'suara_sah': 0,
-        'suara_tidak_sah': 0
+
+    await _calonService.getCalons()
+      .then((value) => _calons.addAll(value))
+      .whenComplete(() {
+        
+        _countSuaraController.sink.add(
+          List.generate(_calons.length, (index) => 0)
+        );
+
+        for (int i = 0; i < _calons.length; i++) {
+          _inputSuaraCalons.add({
+            'total_suara': 0,
+            'suara_sah': 0,
+            'suara_tidak_sah': 0
+          });
+        }
+
       });
-    }
     
     return _calons;
   }
