@@ -89,9 +89,10 @@ class InputDataPage extends Page<InputDataBloc> {
       floatingActionButton: Builder(
         builder: (context) => FloatingActionButton.extended(
           backgroundColor: mainColor,
-          onPressed: () async{
+          onPressed: () async {
             if (_bloc.hakInputPemantau) {
-              await _bloc.sendSuara();
+              await _bloc.sendSuara().whenComplete(() => 
+                Navigator.pushReplacementNamed(context, '/'));
             } else {
               Scaffold.of(context).showSnackBar(snackBar(
                 contentText: 'Pemantau sudah mengirim suara',
