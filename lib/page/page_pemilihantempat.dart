@@ -13,6 +13,8 @@ class PemilihanTempatPage extends Page<PemilihanTempatBloc> {
     return Scaffold(
       appBar: XTopBar(
         textTitle: 'Pemilihan Tempat',
+        isLoading: true,
+        isLoadingStream: bloc.isLoadingStream,
       ),
       body: SafeArea(
         child: Container(
