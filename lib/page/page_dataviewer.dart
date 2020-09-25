@@ -16,71 +16,74 @@ class DataViewerPage extends Page<DataViewerBloc> {
         textTitle: 'Data Pilkada',
       ),
       body: Builder(
-        builder: (contextScaffold) => SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              PieChart(
-                PieChartData(
-                  centerSpaceRadius: 0,
-                  sectionsSpace: 5,
-                  sections: showingSections(),
-                  borderData: FlBorderData(
-                    show: false,
-                  ),
-                )
-              ),
-              XBox(
-                borderColor: borderColor,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Total Pemilih', style: blackContentRegular,),
-                    Text('100.000', style: blackNumber,)
-                  ],
-                ),
-              ),
-              const SizedBox(height: 30,),
-              XBox(
-                borderColor: borderColor,
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Telah Pemilih', style: blackContentRegular,),
-                        Text('50.000', style: blackNumber,)
-                      ],
+        builder: (contextScaffold) => FutureBuilder<List<Calon>>(
+          future: bloc.getCalons(),
+          builder: (context, snapshot) => (snapshot.hasData) ? SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                PieChart(
+                  PieChartData(
+                    centerSpaceRadius: 0,
+                    sectionsSpace: 5,
+                    sections: showingSections(),
+                    borderData: FlBorderData(
+                      show: false,
                     ),
-                    const SizedBox(width: 30,),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Belum Pemilih', style: blackContentRegular,),
-                        Text('50.000', style: blackNumber,)
-                      ],
-                    ),
-                  ],
+                  )
                 ),
-              ),
-              const SizedBox(height: 30,),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: List.generate(bloc.calons.length, (index) => XBox(
+                XBox(
+                  borderColor: borderColor,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Calon ${bloc.calons[index].number}', style: blackSubtitleRegular,),
-                      Text('${bloc.calons[index].totalSuara}', style: blackNumber,)
+                      Text('Total Pemilih', style: blackContentRegular,),
+                      Text(convertCurr(bloc.totalSuara()), style: blackNumber,)
                     ],
                   ),
-                ))
-              ),
-              const SizedBox(height: 30,),
-            ],
-          ),
+                ),
+                const SizedBox(height: 30,),
+                XBox(
+                  borderColor: borderColor,
+                  child: Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Suara Sah', style: blackContentRegular,),
+                          Text(convertCurr(bloc.totalSuaraSah()), style: blackNumber,)
+                        ],
+                      ),
+                      const SizedBox(width: 30,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Suara Tidak Sah', style: blackContentRegular,),
+                          Text(convertCurr(bloc.totalSuaraTidakSah()), style: blackNumber,)
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 30,),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: List.generate(bloc.calons.length, (index) => XBox(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Calon ${bloc.calons[index].number}', style: blackSubtitleRegular,),
+                        Text('${bloc.calons[index].totalSuara}', style: blackNumber,)
+                      ],
+                    ),
+                  ))
+                ),
+                const SizedBox(height: 30,),
+              ],
+            ),
+          ) : const Center(child: CircularProgressIndicator(),)
         ),
       ) 
     );
