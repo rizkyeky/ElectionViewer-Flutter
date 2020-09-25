@@ -96,8 +96,13 @@ class InputDataBloc implements Bloc {
     }
 
     locator.call<Pemantau>(instanceName: 'Pemantau Active').copyWith(hakInput: false);
+    final Pemantau pemantau = locator.get<Pemantau>(instanceName: 'Pemantau Active');  
+    locator.get<UserService>(instanceName: 'Service Pemantau')
+    .updateUser(pemantau.id, hakInput: pemantau.hakInput, tempat: pemantau.tempat);
+    
     _loadingController.sink.add(false);
   }
+
   bool get hakInputPemantau => locator
     .get<Pemantau>(instanceName: 'Pemantau Active').hakInput;
 }
