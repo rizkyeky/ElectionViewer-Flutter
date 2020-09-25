@@ -56,7 +56,7 @@ class UserService {
     await _userCollection.doc(user.id).set(data);
   }
 
-  Future<void> updateUser(String id, {String name, String email, bool hakInput}) async {
+  Future<void> updateUser(String id, {String name, String email, bool hakInput, Map<String, String> tempat}) async {
     
     final Map<String, dynamic> data = {};
 
@@ -68,6 +68,11 @@ class UserService {
     }
     if (hakInput != null && type == TypeUser.pemantau) {
       data['hak_input'] = hakInput;
+    }
+    if (tempat != null && type == TypeUser.pemantau) {
+      data['kecamatan'] = tempat['kecamatan'];
+      data['kelurahan'] = tempat['kelurahan'];
+      data['tps'] = tempat['tps'];
     }
     
     await _userCollection.doc(id).update(data);
