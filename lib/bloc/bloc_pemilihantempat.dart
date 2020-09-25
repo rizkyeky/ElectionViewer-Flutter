@@ -5,6 +5,9 @@ class PemilihanTempatBloc implements Bloc {
   final BehaviorSubject<Map<String, List>> _pemilihanController = BehaviorSubject();
   Stream<Map<String, List>> get pemilihanStream => _pemilihanController.stream;
 
+  final BehaviorSubject<bool> _loadingController = BehaviorSubject();
+  Stream<bool> get isLoadingStream => _loadingController.stream;
+
   final KecamatanService _kecamatanService = locator.get<KecamatanService>(
     instanceName: 'Service Kecamatan');
   final KelurahanService _kelurahanService = locator.get<KelurahanService>(
@@ -30,7 +33,8 @@ class PemilihanTempatBloc implements Bloc {
 
   @override
   Future<void> init() async {
-    await getKecamatans();
+    _loadingController.sink.add(true);
+    await getKecamatans().whenComplete(() => _loadingController.sink.add(false));
   }
 
   @override
