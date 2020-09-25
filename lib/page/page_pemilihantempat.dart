@@ -14,7 +14,7 @@ class PemilihanTempatPage extends Page<PemilihanTempatBloc> {
       appBar: XTopBar(
         textTitle: 'Pemilihan Tempat',
         isLoading: true,
-        isLoadingStream: bloc.isLoadingStream,
+        isLoadingStream: _bloc.isLoadingStream,
       ),
       body: SafeArea(
         child: Container(
@@ -27,15 +27,15 @@ class PemilihanTempatPage extends Page<PemilihanTempatBloc> {
               Text('Kecamatan', style: blackContentRegular),
               StreamBuilder<Map<String, List>>(
                 initialData: const {'kecamatan': []},
-                stream: bloc.pemilihanStream,
+                stream: _bloc.pemilihanStream,
                 builder: (context, snapshot) {
                   return (snapshot.hasData) ? XDropDown(
-                  isDisabled: bloc.kecamatans.isEmpty,
+                  isDisabled: _bloc.kecamatans.isEmpty,
                   onSelected: (index) async {
-                    bloc.selectTempat(indexKec: index);
-                    await bloc.getKelurahans((snapshot.data['kecamatan'][index] as Kecamatan).id);
+                    _bloc.selectTempat(indexKec: index);
+                    await _bloc.getKelurahans((snapshot.data['kecamatan'][index] as Kecamatan).id);
                   },
-                  length: bloc.kecamatans.length ,
+                  length: _bloc.kecamatans.length ,
                   childrenBuilder: (context, index) => 
                     Text((snapshot.data['kecamatan'][index] as Kecamatan).name, 
                       style: blackContentRegular,
@@ -47,15 +47,15 @@ class PemilihanTempatPage extends Page<PemilihanTempatBloc> {
               Text('Kelurahan', style: blackContentRegular),
               StreamBuilder<Map<String, List>>(
                 initialData: const {'kelurahan': []},
-                stream: bloc.pemilihanStream,
+                stream: _bloc.pemilihanStream,
                 builder: (context, snapshot) {
                   return (snapshot.hasData) ? XDropDown(
                   onSelected: (index) {
-                    bloc.selectTempat(indexKel: index);
-                    bloc.generateTPSes();
+                    _bloc.selectTempat(indexKel: index);
+                    _bloc.generateTPSes();
                   },
-                  isDisabled: bloc.kelurahans.isEmpty,
-                  length: bloc.kelurahans.length,
+                  isDisabled: _bloc.kelurahans.isEmpty,
+                  length: _bloc.kelurahans.length,
                   childrenBuilder: (context, index) => 
                     Text((snapshot.data['kelurahan'][index] as Kelurahan).name, 
                       style: blackContentRegular,
@@ -67,13 +67,13 @@ class PemilihanTempatPage extends Page<PemilihanTempatBloc> {
               Text('Tempat TPS', style: blackContentRegular),
               StreamBuilder<Map<String, List>>(
                 initialData: const {'tps': []},
-                stream: bloc.pemilihanStream,
+                stream: _bloc.pemilihanStream,
                 builder: (context, snapshot) => (snapshot.hasData) ? XDropDown(
                   onSelected: (index) {
-                    bloc.selectTempat(indexTPS: index);
+                    _bloc.selectTempat(indexTPS: index);
                   },
-                  isDisabled: bloc.tpses.isEmpty,
-                  length: bloc.tpses.length,
+                  isDisabled: _bloc.tpses.isEmpty,
+                  length: _bloc.tpses.length,
                   childrenBuilder: (context, index) => 
                     Text(snapshot.data['tps'][index] as String, 
                       style: blackContentRegular,
@@ -88,16 +88,16 @@ class PemilihanTempatPage extends Page<PemilihanTempatBloc> {
         builder: (context) => FloatingActionButton.extended(
           backgroundColor: mainColor,
           onPressed: () {
-            if (bloc.selectedTempat.keys.length == 3) {
+            if (_bloc.selectedTempat.keys.length == 3) {
               Navigator.pushReplacementNamed(context, '/inputdata');
             } else {
               
               String tempat = '';
-              if (!bloc.selectedTempat.keys.contains('kecamatan')) {
+              if (!_bloc.selectedTempat.keys.contains('kecamatan')) {
                 tempat = 'kecamatan';
-              } else if (!bloc.selectedTempat.keys.contains('kelurahan')) {
+              } else if (!_bloc.selectedTempat.keys.contains('kelurahan')) {
                 tempat = 'kelurahan';
-              } else if (!bloc.selectedTempat.keys.contains('tps')) {
+              } else if (!_bloc.selectedTempat.keys.contains('tps')) {
                 tempat = 'TPS';
               }
 
