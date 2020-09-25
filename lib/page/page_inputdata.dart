@@ -12,64 +12,61 @@ class InputDataPage extends Page<InputDataBloc> {
     // TODO: implement init
   }
 
-  Widget buildInputBox(BuildContext context, int index) {
+  Widget buildInputBox(BuildContext context, Calon calon, int index) {
     return XBox(
       borderColor: borderColor,
       padding: const EdgeInsets.all(15),
       height: 250,
-      child: FutureBuilder<Calon>(
-        future: bloc.getCalon(index),
-        builder: (context, snapshotFuture) => (snapshotFuture.hasData) ? Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Calon $index', style: blackSubtitleBold,),
-                    Text(snapshotFuture.data.name, style: blackSubtitleRegular,),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text('Total Suara', style: blackContentRegular,),
-                    StreamBuilder<int>(
-                      initialData: snapshotFuture.data.totalSuara,
-                      stream: bloc.getSuaraCalon(index),
-                      builder: (context, snapshotStream) {
-                        return Text(convertCurr(snapshotStream.data), style: blackNumber,);
-                      }
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                XTextField(
-                  keyboardType: TextInputType.number,
-                  onChanged: (value) {
-                    bloc.inputSahSuara(index, int.parse(value));
-                  },
-                  text: 'Suara Sah',
-                ),
-                const SizedBox(height: 15,),
-                XTextField(
-                  keyboardType: TextInputType.number,
-                  onChanged: (value) {
-                    bloc.inputTidakSahSuara(index, int.parse(value));
-                  },
-                  text: 'Suara Tidak Sah',
-                ),
-              ],
-            )
-          ],
-        ) : const Center(child: CircularProgressIndicator(),)
-      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Calon ${calon.number}', style: blackSubtitleBold,),
+                  Text(calon.name, style: blackSubtitleRegular,),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text('Total Suara', style: blackContentRegular,),
+                  StreamBuilder<List<int>>(
+                    initialData: List.generate(bloc.calons.length, (index) => 0),
+                    stream: bloc.streamCountSuara,
+                    builder: (context, snapshotStream) => 
+                      Text(convertCurr(snapshotStream.data[index]), 
+                        style: blackNumber,)
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Column(
+            children: [
+              XTextField(
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  bloc.inputSahSuara(index, int.parse(value));
+                },
+                text: 'Suara Sah',
+              ),
+              const SizedBox(height: 15,),
+              XTextField(
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  bloc.inputTidakSahSuara(index, int.parse(value));
+                },
+                text: 'Suara Tidak Sah',
+              ),
+            ],
+          )
+        ],
+      )
     );
   }
   
@@ -78,14 +75,20 @@ class InputDataPage extends Page<InputDataBloc> {
     return Scaffold(
       appBar: XTopBar(
         textTitle: 'Input Data',
+        isLoading: true,
+        isLoadingStream: bloc.isLoadingStream,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List<Widget>.generate(2, (index) => buildInputBox(context, index+1))
-        ),
+      body: FutureBuilder<List<Calon>>(
+        future: bloc.getCalons(),
+        builder: (context, snapshot) => (snapshot.hasData) ? SingleChildScrollView(
+          padding: const EdgeInsets.all(30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List<Widget>.generate(snapshot.data.length, (index) => 
+              buildInputBox(context, snapshot.data[index], index))
+            ),
+          ) : const Center(child: CircularProgressIndicator(),)
       ),
       floatingActionButton: Builder(
         builder: (context) => FloatingActionButton.extended(
