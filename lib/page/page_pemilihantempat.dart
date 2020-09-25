@@ -89,7 +89,7 @@ class PemilihanTempatPage extends Page<PemilihanTempatBloc> {
           backgroundColor: mainColor,
           onPressed: () {
             if (bloc.selectedTempat.keys.length == 3) {
-              Navigator.pushNamed(context, '/inputdata');
+              Navigator.pushReplacementNamed(context, '/inputdata');
             } else {
               
               String tempat = '';
