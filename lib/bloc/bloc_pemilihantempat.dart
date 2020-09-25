@@ -70,24 +70,32 @@ class PemilihanTempatBloc implements Bloc {
     _pemilihanController.sink.add(data);
   }
 
- Future<void> getKecamatans() async {
-   await _kecamatanService.getKecamatans()
-   .then((list) {
-    _kecamatans = list;
-    updatePemilihanStream(kec: _kecamatans);
-   });
- }
+  Future<void> getKecamatans() async {
+    await _kecamatanService.getKecamatans()
+    .then((list) {
+      _kecamatans = list;
+      updatePemilihanStream(kec: _kecamatans);
+    });
+  }
  
- Future<void> getKelurahans(int idKec) async {
+  Future<void> getKelurahans(int idKec) async {
    await _kelurahanService.getKelurahans(idKec)
     .then((list) {
       _kelurahans = list;
       updatePemilihanStream(kel: _kelurahans);
     });
- }
+  }
 
- void generateTPSes() {
-  _tpses = List.generate(5, (index) => 'TPS 0${index+1}');
-  updatePemilihanStream(tps: _tpses);  
- }
+  void generateTPSes() {
+    _tpses = List.generate(5, (index) => 'TPS 0${index+1}');
+    updatePemilihanStream(tps: _tpses);  
+  }
+
+  void onSelectedTempat() {
+    locator.call<Pemantau>(instanceName: 'Pemantau Active').copyWith(tempat: {
+      'kecamatan': _selectedTempat['kecamatan'].toString(),
+      'kelurahan': _selectedTempat['kelurahan'].toString(),
+      'tps': _selectedTempat['tps'] as String,
+    });
+  }
 }
