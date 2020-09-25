@@ -1,13 +1,6 @@
 part of 'page.dart';
 
-class TypeSelectionPage extends Page<TypeSelectionBloc> {
-
-  @override
-  void dispose() {}
-
-  @override
-  void init() {}
-
+class TypeSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +17,7 @@ class TypeSelectionPage extends Page<TypeSelectionBloc> {
               XButton(
                 height: 60,
                 color: mainColor,
-                onTap: () => Navigator
-                  .pushNamed(context, '/loginpemantau'), 
+                onTap: () => Navigator.pushNamed(context, '/loginpemantau'), 
                 child: Text('Sebagai Pemantau TPS', 
                   style: whiteSubtitleBold,
                   textAlign: TextAlign.center,
@@ -35,8 +27,7 @@ class TypeSelectionPage extends Page<TypeSelectionBloc> {
               XButton(
                 height: 60,
                 isBorder: true,
-                onTap: () => Navigator
-                  .pushNamed(context, '/loginadmin'), 
+                onTap: () => Navigator.pushNamed(context, '/loginadmin'), 
                 child: Text('Sebagai Admin', 
                   style: blueSubtitleBold.copyWith(color: greyColor), 
                 )
