@@ -12,13 +12,13 @@ class TypeSelectionPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Masuk', style: blackTitle,),
+              Text('Enter', style: blackTitle,),
               const SizedBox(height: 30,),
               XButton(
                 height: 60,
                 color: mainColor,
                 onTap: () => Navigator.pushNamed(context, '/loginpemantau'), 
-                child: Text('Sebagai Pemantau TPS', 
+                child: Text('As Monitor', 
                   style: whiteSubtitleBold,
                   textAlign: TextAlign.center,
                 )
@@ -28,7 +28,7 @@ class TypeSelectionPage extends StatelessWidget {
                 height: 60,
                 isBorder: true,
                 onTap: () => Navigator.pushNamed(context, '/loginadmin'), 
-                child: Text('Sebagai Admin', 
+                child: Text('As Admin', 
                   style: blueSubtitleBold.copyWith(color: greyColor), 
                 )
               ),

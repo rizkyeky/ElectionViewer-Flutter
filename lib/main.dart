@@ -31,7 +31,7 @@ class App extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: '/',
-      onGenerateRoute: Router.generateRoute,
+      onGenerateRoute: XRouter.generateRoute,
     );
   }
 }

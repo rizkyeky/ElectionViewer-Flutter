@@ -12,7 +12,7 @@ class PemilihanTempatPage extends Page<PemilihanTempatBloc> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: XTopBar(
-        textTitle: 'Pemilihan Tempat',
+        textTitle: 'Choose Places',
         isLoading: true,
         isLoadingStream: _bloc.isLoadingStream,
       ),

@@ -28,8 +28,8 @@ class LogInAdminPage extends Page<LogInAdminBloc> {
                 height: 200,
               ),
               const SizedBox(height: 30,),
-              Text('Masuk', style: blackTitle,),
-              Text('Sebagai Admin', style: blackSubtitleRegular,),
+              Text('Enter', style: blackTitle,),
+              Text('As Admin', style: blackSubtitleRegular,),
               const SizedBox(height: 30,),
               XTextField(
                 controller: _emailText,
@@ -53,21 +53,21 @@ class LogInAdminPage extends Page<LogInAdminBloc> {
                   final bool isValidPassword = _passwordText.text.length >= 6; 
 
                   if (isValidEmail && isValidPassword) {
-                    await _bloc.logIn(
-                      _emailText.text, _passwordText.text)
-                      .then((value) {
-                        if (value == 'User Active') {
+                    // await _bloc.logIn(
+                    //   _emailText.text, _passwordText.text)
+                    //   .then((value) {
+                    //     if (value == 'User Active') {
                           Navigator.pushReplacementNamed(context, '/dataviewer');
-                        }
-                        else {
-                          Scaffold.of(contextScaffold).showSnackBar(snackBar(
-                            contentText: value,
-                            labelText: 'DISMISS',
-                            onPressed: () => Scaffold.of(contextScaffold).hideCurrentSnackBar()
-                          ));
-                        }
-                      }
-                    );
+                      //   }
+                      //   else {
+                      //     Scaffold.of(contextScaffold).showSnackBar(snackBar(
+                      //       contentText: value,
+                      //       labelText: 'DISMISS',
+                      //       onPressed: () => Scaffold.of(contextScaffold).hideCurrentSnackBar()
+                      //     ));
+                      //   }
+                      // }
+                    // );
                   } else {
                     Scaffold.of(contextScaffold).showSnackBar(snackBar(
                       contentText: 'Email or password not valid',
@@ -76,12 +76,12 @@ class LogInAdminPage extends Page<LogInAdminBloc> {
                     ));
                   }
                 },
-                child: Text('Masuk', style: whiteSubtitleBold,),
+                child: Text('Enter', style: whiteSubtitleBold,),
               ),
               const SizedBox(height: 36,),
               GestureDetector(
                 onTap: () {},
-                child: Text('Terdapat Masalah?',
+                child: Text('Have problem?',
                   style: blackContentRegular
                 ),
               )

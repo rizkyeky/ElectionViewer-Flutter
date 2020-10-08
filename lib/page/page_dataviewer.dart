@@ -13,7 +13,7 @@ class DataViewerPage extends Page<DataViewerBloc> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: XTopBar(
-        textTitle: 'Data Pilkada',
+        textTitle: 'Data Viewer',
       ),
       body: Builder(
         builder: (contextScaffold) => FutureBuilder<List<Calon>>(
@@ -38,7 +38,7 @@ class DataViewerPage extends Page<DataViewerBloc> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Total Pemilih', style: blackContentRegular,),
+                      Text('Total Votes', style: blackContentRegular,),
                       Text(convertCurr(_bloc.totalSuara()), style: blackNumber,)
                     ],
                   ),
@@ -49,22 +49,22 @@ class DataViewerPage extends Page<DataViewerBloc> {
                   child: Row(
                     children: [
                       Expanded(
-                        flex: 2,
+                        flex: 3,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Suara Sah', style: blackContentRegular,),
+                            Text('Valid Votes', style: blackContentRegular,),
                             Text(convertCurr(_bloc.totalSuaraSah()), style: blackNumber,)
                           ],
                         ),
                       ),
-                      const Expanded(child: SizedBox(width: 30,),),
+                      const Expanded(child: SizedBox(width: 10,),),
                       Expanded(
-                        flex: 2,
+                        flex: 5,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Suara Tidak Sah', style: blackContentRegular,),
+                            Text('Invalid Votes', style: blackContentRegular,),
                             Text(convertCurr(_bloc.totalSuaraTidakSah()), style: blackNumber,)
                           ],
                         ),
@@ -80,7 +80,7 @@ class DataViewerPage extends Page<DataViewerBloc> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Calon ${_bloc.calons[index].number}', style: blackSubtitleRegular,),
+                        Text('Candidate ${_bloc.calons[index].number}', style: blackSubtitleRegular,),
                         Text('${_bloc.calons[index].totalSuara}', style: blackNumber,)
                       ],
                     ),

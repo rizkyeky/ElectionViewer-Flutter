@@ -15,6 +15,8 @@ class InputDataBloc implements Bloc {
   List<Calon> get calons => _calons;
 
   final List<Map<String, int>> _inputSuaraCalons = [{}];
+  final List<bool> _isInputed = [];
+  bool get isInputed => _isInputed.every((element) => element == true);
 
   @override
   void dispose() {
@@ -41,6 +43,7 @@ class InputDataBloc implements Bloc {
             'suara_sah': 0,
             'suara_tidak_sah': 0
           });
+          _isInputed.add(false);
         }
 
       });
@@ -54,13 +57,15 @@ class InputDataBloc implements Bloc {
 
   void inputSahSuara(int index, int value) {
     _inputSuaraCalons[index]['suara_sah'] = value;
-    
+
     if (!_inputSuaraCalons[index].containsKey('suara_tidak_sah')) {
       _inputSuaraCalons[index]['suara_tidak_sah'] = 0;  
     }
     
     _inputSuaraCalons[index]['total_suara'] = 
-    _inputSuaraCalons[index]['suara_sah'] + _inputSuaraCalons[index]['suara_tidak_sah'];  
+    _inputSuaraCalons[index]['suara_sah'] + _inputSuaraCalons[index]['suara_tidak_sah']; 
+
+    _isInputed[index] = _inputSuaraCalons[index]['total_suara'] > 0;
     
     _countSuaraController.sink.add(
       List.generate(_calons.length, (index) => 
@@ -76,7 +81,9 @@ class InputDataBloc implements Bloc {
     }
 
     _inputSuaraCalons[index]['total_suara'] = 
-    _inputSuaraCalons[index]['suara_sah'] + _inputSuaraCalons[index]['suara_tidak_sah'];  
+    _inputSuaraCalons[index]['suara_sah'] + _inputSuaraCalons[index]['suara_tidak_sah'];
+
+    _isInputed[index] = _inputSuaraCalons[index]['total_suara'] > 0; 
 
     _countSuaraController.sink.add(
       List.generate(_calons.length, (index) => 
