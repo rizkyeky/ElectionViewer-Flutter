@@ -1,16 +1,21 @@
-# pemilihan_app
+# Pemilu App
 
-A new Flutter project.
+Pemilu App is prototype app for election monitor and input data built by Flutter
 
-## Getting Started
+## Inside the app
 
-This project is a starting point for a Flutter application.
+- [Google Font](https://pub.dev/packages/google_fonts)
+- [FL Chart](https://pub.dev/packages/fl_chart)
+- [RX Dart](https://pub.dev/packages/rxdart)
+- [Get It](https://pub.dev/packages/get_it)
+- [Sub-district API](https://dev.farizdotid.com/api/daerahindonesia)
+- Firebase: Firestore and Authentication
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+![Alt](Pemilu App.png)
+![Alt](Screenshot_1602116049.png)
+![Alt](Screenshot_1602116266.png)
+![Alt](Screenshot_1602116362.png)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
