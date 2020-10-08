@@ -1,4 +1,4 @@
-# Pemilu_app
+# Pemilu App
 
 Pemilu App is prototype app for election monitor and input data built by Flutter
 
@@ -11,6 +11,11 @@ Pemilu App is prototype app for election monitor and input data built by Flutter
 - [Sub-district API](https://dev.farizdotid.com/api/daerahindonesia)
 - Firebase: Firestore and Authentication
 
+## Screenshots
 
+![Alt](Pemilu App.png)
+![Alt](Screenshot_1602116049.png)
+![Alt](Screenshot_1602116266.png)
+![Alt](Screenshot_1602116362.png)
 
 
