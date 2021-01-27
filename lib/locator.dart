@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:pemilihan_app/model/model.dart';
 
 import 'bloc/bloc.dart';
 // import 'model/model.dart';
@@ -32,7 +33,7 @@ void setupLocator() {
   // locator.registerFactory(() => MyTransactionBloc());
   // locator.registerFactory(() => SearchBloc());
 
-  // locator.registerSingleton<Ticket>(Ticket.initial(), instanceName: 'Ticket');
+  locator.registerSingleton<Pemantau>(Pemantau.initial(), instanceName: 'Pemantau Active');
   // locator.registerSingleton<User>(User.initial(), instanceName: 'User Active');
 }
 
