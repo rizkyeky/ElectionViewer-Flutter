@@ -1,17 +1,16 @@
 # Pemilu App
 
-Pemilu App is prototype app for election monitor and input data built by Flutter
+Election Viewer is built with Flutter. App for election monitor and input data
 
 ## Inside the app
 
-- [Google Font](https://pub.dev/packages/google_fonts)
-- [FL Chart](https://pub.dev/packages/fl_chart)
-- [RX Dart](https://pub.dev/packages/rxdart)
-- [Get It](https://pub.dev/packages/get_it)
-- [Sub-district API](https://dev.farizdotid.com/api/daerahindonesia)
-- Firebase: Firestore and Authentication
-
-## Screenshots
+  - BLoc Design Pattern
+  - RXDart State Management
+  - GetIt for Depedency Injector
+  - Firebase Firestore
+  - Sub-district API from https://dev.farizdotid.com/api/daerahindonesia
+  - Google Font Package https://pub.dev/packages/google_fonts
+  - FL Chart Package https://pub.dev/packages/fl_chart
 
 ![Alt](election-cover.png)
 
