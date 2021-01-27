@@ -8,8 +8,8 @@ class InputDataBloc implements Bloc {
   final BehaviorSubject<bool> _loadingController = BehaviorSubject();
   Stream<bool> get isLoadingStream => _loadingController.stream;
 
-  final CalonService _calonService = locator
-    .get<CalonService>(instanceName: 'Service Calon');
+  // final CalonService _calonService = locator
+  //   .get<CalonService>(instanceName: 'Service Calon');
   
   final List<Calon> _calons = [];
   List<Calon> get calons => _calons;
@@ -29,8 +29,12 @@ class InputDataBloc implements Bloc {
 
   Future<List<Calon>> getCalons() async {
 
-    await _calonService.getCalons()
-      .then((value) => _calons.addAll(value))
+    await Future.delayed( const Duration(seconds: 2))
+      .whenComplete(() => _calons.addAll([
+        Calon('1', 'Junaidi', 1,),
+        Calon('2', 'Rendi', 2,),
+        Calon('3', 'Firdi', 3,),
+      ]))
       .whenComplete(() {
         
         _countSuaraController.sink.add(
@@ -94,19 +98,19 @@ class InputDataBloc implements Bloc {
   Future<void> sendSuara() async {
     _loadingController.sink.add(true);
     
-    for (int i = 0; i < _calons.length; i++) {
-      await _calonService.updateCalon(calons[i].id,
-        totalSuara: _inputSuaraCalons[i]['total_suara'], 
-        tidaksahSuara: _inputSuaraCalons[i]['suara_tidak_sah'],
-        sahSuara: _inputSuaraCalons[i]['suara_sah']
-      );
-    }
+    // for (int i = 0; i < _calons.length; i++) {
+    //   await _calonService.updateCalon(calons[i].id,
+    //     totalSuara: _inputSuaraCalons[i]['total_suara'], 
+    //     tidaksahSuara: _inputSuaraCalons[i]['suara_tidak_sah'],
+    //     sahSuara: _inputSuaraCalons[i]['suara_sah']
+    //   );
+    // }
 
-    locator.call<Pemantau>(instanceName: 'Pemantau Active').copyWith(hakInput: false);
-    final Pemantau pemantau = locator.get<Pemantau>(instanceName: 'Pemantau Active');  
-    locator.get<UserService>(instanceName: 'Service Pemantau')
-    .updateUser(pemantau.id, hakInput: pemantau.hakInput, tempat: pemantau.tempat);
-    
+    // locator.call<Pemantau>(instanceName: 'Pemantau Active').copyWith(hakInput: false);
+    // final Pemantau pemantau = locator.get<Pemantau>(instanceName: 'Pemantau Active');  
+    // locator.get<UserService>(instanceName: 'Service Pemantau')
+    // .updateUser(pemantau.id, hakInput: pemantau.hakInput, tempat: pemantau.tempat);
+    Future.delayed( const Duration(seconds: 2));
     _loadingController.sink.add(false);
   }
 

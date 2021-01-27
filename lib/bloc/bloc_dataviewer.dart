@@ -2,8 +2,8 @@ part of 'bloc.dart';
 
 class DataViewerBloc implements Bloc {
 
-  final CalonService _calonService = locator
-    .get<CalonService>(instanceName: 'Service Calon');
+  // final CalonService _calonService = locator
+  //   .get<CalonService>(instanceName: 'Service Calon');
   
   final List<Calon> _calons = [];
   List<Calon> get calons => _calons; 
@@ -15,7 +15,25 @@ class DataViewerBloc implements Bloc {
   void init() {}
 
   Future<List<Calon>> getCalons() async {
-    _calons.addAll(await _calonService.getCalons(encrypt: false));
+    await Future.delayed( const Duration(seconds: 2)).whenComplete(() {
+      _calons.addAll([
+        Calon('1', 'Junaidi', 1,
+          totalSuara: 300,
+          sahSuara: 250,
+          tidaksahSuara: 50,
+        ),
+        Calon('2', 'Rendi', 2,
+          totalSuara: 500,
+          sahSuara: 250,
+          tidaksahSuara: 250,
+        ),
+        Calon('3', 'Firdi', 3,
+          totalSuara: 400,
+          sahSuara: 300,
+          tidaksahSuara: 100,
+        ),
+      ]);
+    });
     return _calons;
   }
 

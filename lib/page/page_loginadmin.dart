@@ -50,7 +50,7 @@ class LogInAdminPage extends Page<LogInAdminBloc> {
                     RegExp(r'^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$')
                   ); 
 
-                  final bool isValidPassword = _passwordText.text.length >= 6; 
+                  const bool isValidPassword = true;// _passwordText.text.length >= 6; 
 
                   if (isValidEmail && isValidPassword) {
                     // await _bloc.logIn(

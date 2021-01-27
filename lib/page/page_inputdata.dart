@@ -23,14 +23,14 @@ class InputDataPage extends Page<InputDataBloc> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Calon ${calon.number}', style: blackSubtitleBold,),
+                  Text('Candidate ${calon.number}', style: blackSubtitleBold,),
                   Text(calon.name, style: blackSubtitleRegular,),
                 ],
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text('Total Suara', style: blackContentRegular,),
+                  Text('Total Votes', style: blackContentRegular,),
                   StreamBuilder<List<int>>(
                     initialData: List.generate(_bloc.calons.length, (index) => 0),
                     stream: _bloc.streamCountSuara,
@@ -49,7 +49,7 @@ class InputDataPage extends Page<InputDataBloc> {
                 onChanged: (value) {
                   _bloc.inputSahSuara(index, int.parse(value));
                 },
-                text: 'Suara Sah',
+                text: 'Valid Votes',
               ),
               const SizedBox(height: 15,),
               XTextField(
@@ -57,7 +57,7 @@ class InputDataPage extends Page<InputDataBloc> {
                 onChanged: (value) {
                   _bloc.inputTidakSahSuara(index, int.parse(value));
                 },
-                text: 'Suara Tidak Sah',
+                text: 'Invalid Votes',
               ),
             ],
           )
@@ -103,23 +103,23 @@ class InputDataPage extends Page<InputDataBloc> {
           backgroundColor: mainColor,
           onPressed: () async {
             if (_bloc.hakInputPemantau && _bloc.isInputed) {
-              await _bloc.sendSuara().then((value) => 
+              await _bloc.sendSuara().whenComplete(() => 
                 Navigator.pushNamedAndRemoveUntil(context, '/', (router) => false));
             } else if (!_bloc.isInputed) {
               Scaffold.of(context).showSnackBar(snackBar(
-                contentText: 'Pemantau belum mengisi semua data',
-                labelText: 'TUTUP',
+                contentText: 'Invalid data',
+                labelText: 'DISMISS',
                 onPressed: () => Scaffold.of(context).hideCurrentSnackBar()
               ));
             } else if (!_bloc.hakInputPemantau) {
               Scaffold.of(context).showSnackBar(snackBar(
-                contentText: 'Pemantau sudah mengirim suara',
-                labelText: 'TUTUP',
+                contentText: 'Done',
+                labelText: 'DISMISS',
                 onPressed: () => Scaffold.of(context).hideCurrentSnackBar()
               ));
             }
           }, 
-          label: Text('Kirim', style: whiteSubtitleBold,),
+          label: Text('Send', style: whiteSubtitleBold,),
           elevation: 0,
           highlightElevation: 0,
         ),
