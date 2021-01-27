@@ -13,9 +13,6 @@ Pemilu App is prototype app for election monitor and input data built by Flutter
 
 ## Screenshots
 
-![Alt](Pemilu App.png)
-![Alt](Screenshot_1602116049.png)
-![Alt](Screenshot_1602116266.png)
-![Alt](Screenshot_1602116362.png)
+![Alt](election-cover.png)
 
 
