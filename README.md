@@ -10,6 +10,8 @@ Election Viewer is built with Flutter. App for election monitor and input data
   - Firebase Firestore
   - Sub-district API from https://dev.farizdotid.com/api/daerahindonesia
   - Google Font Package https://pub.dev/packages/google_fonts
+  - Http Package https://pub.dev/packages/http
+  - Google Font Package https://pub.dev/packages/google_fonts
   - FL Chart Package https://pub.dev/packages/fl_chart
 
 ![Alt](election-cover.png)
